@@ -15,12 +15,13 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Got To Back"
-        android:textSize="32dp" />
+        android:textSize="16dp" />
 
     <ImageView
         android:id="@+id/profile_photo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="140dp"
+        android:scaleType="fitXY"
+        android:layout_height="140dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:background="@mipmap/ic_launcher" />
@@ -44,7 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:hint="Enter Email" />
+        android:hint="Enter Email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/password_editText"
@@ -59,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/teal_200"
+        android:inputType="textVisiblePassword"
         android:text="Register"
         android:textColor="@color/white" />
 

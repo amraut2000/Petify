@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -111,6 +112,7 @@ public class UserPetAdapter extends RecyclerView.Adapter<UserPetAdapter.ViewHold
 
                     break;
                 }
+                Toast.makeText(context, "Your pet deleted successfully!", Toast.LENGTH_SHORT).show();
             }
         });
     }

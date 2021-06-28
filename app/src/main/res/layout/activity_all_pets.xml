@@ -12,10 +12,19 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/teal_200"
         app:title="All Available Pets For Adoption"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/white">
+
+        <ImageView
+            android:id="@+id/search_pet"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="48dp"
+            android:src="@drawable/search_icon_foreground" />
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_pets"
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar_pets" />

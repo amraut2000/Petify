@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        app:cardBackgroundColor="#fcfafa"
         android:background="@color/white"
-        app:cardBackgroundColor="#79e0c7"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp">
 
@@ -48,23 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/textView_age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="age"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/textView_color"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="color"
-                    android:textColor="@color/white"
+                    android:textColor="#3b4b54"
                     android:textSize="20sp" />
 
                 <TextView
@@ -72,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="type"
-                    android:textColor="@color/white"
+                    android:textColor="#3b4b54"
                     android:textSize="20sp" />
 
                 <TextView
@@ -80,15 +64,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="breed"
-                    android:textColor="@color/white"
+                    android:textColor="#3b4b54"
                     android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="age"
+                    android:textColor="#3b4b54"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="color"
+                    android:textColor="#3b4b54"
+                    android:textSize="20sp" />
+
 
                 <TextView
                     android:id="@+id/textView_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="gender"
-                    android:textColor="@color/white"
+                    android:textColor="#3b4b54"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -108,9 +109,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/black_line"
-                android:padding="4dp"
                 android:text="Address"
-                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textColor="#3b4b54"
+                android:paddingLeft="4dp"
                 android:textSize="20sp" />
 
             <View
@@ -127,9 +129,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/black_line2"
-                android:padding="4dp"
                 android:text="Mobile Number"
-                android:textColor="@color/white"
+                android:paddingLeft="4dp"
+                android:textStyle="bold"
+                android:textColor="#3b4b54"
                 android:textSize="20sp" />
 
             <Button
@@ -138,9 +141,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_contactNumber"
                 android:background="@color/teal_200"
+                android:clickable="true"
                 android:text="Delete"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

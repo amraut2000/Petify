@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ public class DonateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_donate);
 
         // get the Firebase  storage reference
@@ -187,6 +189,7 @@ public class DonateActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(DonateActivity.this, "Your animal has been recorded for adoption", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(DonateActivity.this,ProfileActivity.class));
                 }
                 else{
                     progressBar.setVisibility(View.GONE);
