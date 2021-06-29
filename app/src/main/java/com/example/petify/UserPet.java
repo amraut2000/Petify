@@ -1,6 +1,7 @@
 package com.example.petify;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +21,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class UserPet extends AppCompatActivity {
     private List<Animal> animals;
@@ -46,17 +51,17 @@ public class UserPet extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         String userId= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        List<String> animalId=new ArrayList<>();
+        Set<String> animalId1=new HashSet<>();
+
 
         databaseReference= FirebaseDatabase.getInstance().getReference("User-Animal/"+userId);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                animalId.clear();
+                animalId1.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     String id=dataSnapshot.getValue(String.class);
-                    //Log.d("UserPet", "onDataChange: "+id);
-                    animalId.add(id);
+                    animalId1.add(id);
                 }
             }
 
@@ -74,12 +79,10 @@ public class UserPet extends AppCompatActivity {
                 for(DataSnapshot postSnapshot: snapshot.getChildren()){
                     String id=postSnapshot.getKey();
                     Log.d("UserPet", "onDataChange: "+id);
-                    for(String s:animalId){
-                        if(id.equals(s)){
-                            Animal animal=postSnapshot.getValue(Animal.class);
-                            animals.add(animal);
-                            map.put(id,animal);
-                        }
+                    if(animalId1.contains(id)){
+                        Animal animal=postSnapshot.getValue(Animal.class);
+                        animals.add(animal);
+                        map.put(id,animal);
                     }
                 }
                 userPetAdapter.notifyDataSetChanged();

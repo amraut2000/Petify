@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        app:cardBackgroundColor="#fcfafa"
         android:background="@color/white"
+        app:cardBackgroundColor="#e3dada"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp">
 
@@ -21,7 +21,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/image_cardView"
                 android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:layout_margin="4dp"
                 app:cardCornerRadius="10dp">
 
@@ -38,7 +38,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/image_cardView"
-                android:layout_alignBottom="@+id/image_cardView"
                 android:layout_toEndOf="@+id/image_cardView"
                 android:orientation="vertical"
                 android:padding="8dp">
@@ -109,9 +108,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/black_line"
+                android:paddingLeft="4dp"
                 android:text="Address"
                 android:textColor="#3b4b54"
-                android:paddingLeft="4dp"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -129,10 +128,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/black_line2"
+                android:paddingLeft="4dp"
                 android:text="Mobile Number"
                 android:textColor="#3b4b54"
                 android:textSize="20sp"
-                android:paddingLeft="4dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 

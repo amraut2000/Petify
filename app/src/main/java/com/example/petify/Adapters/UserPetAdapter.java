@@ -56,14 +56,14 @@ public class UserPetAdapter extends RecyclerView.Adapter<UserPetAdapter.ViewHold
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         Animal animal=dataSet.get(position);
         Picasso.get().load(animal.getImage()).into(holder.imageView);
-        holder.textViewName.setText(animal.getName());
-        holder.textViewGender.setText(animal.getGender());
-        holder.textViewType.setText(animal.getType());
-        holder.textViewAge.setText(animal.getAge());
-        holder.textViewNumber.setText(animal.getContactNumber());
-        holder.textViewAddress.setText(animal.getAddress());
-        holder.textViewColor.setText(animal.getColor());
-        holder.textViewBreed.setText(animal.getBreed());
+        holder.textViewName.setText("Name: "+animal.getName());
+        holder.textViewGender.setText("Gender: "+animal.getGender());
+        holder.textViewType.setText("Type: "+animal.getType());
+        holder.textViewAge.setText("Age: "+animal.getAge());
+        holder.textViewNumber.setText("Mobile No: "+animal.getContactNumber());
+        holder.textViewAddress.setText("Address: "+animal.getAddress());
+        holder.textViewColor.setText("Color: "+animal.getColor());
+        holder.textViewBreed.setText("Breed: "+animal.getBreed());
 
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,9 +108,10 @@ public class UserPetAdapter extends RecyclerView.Adapter<UserPetAdapter.ViewHold
                                 Log.d("UserPetAdapter", "onFailure: did not delete file");
                             }
                         });
+                        break;
                     }
 
-                    break;
+
                 }
                 Toast.makeText(context, "Your pet deleted successfully!", Toast.LENGTH_SHORT).show();
             }
