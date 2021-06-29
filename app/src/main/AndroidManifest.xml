@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petify">
-        <activity android:name=".UserPet"></activity>
+        <activity android:name=".SearchPetsActivity"></activity>
+        <activity android:name=".UserPet" />
         <activity android:name=".AllPetsActivity" />
         <activity android:name=".DonateActivity" />
         <activity android:name=".ForgotPasswordActivity" />

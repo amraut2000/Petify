@@ -35,11 +35,11 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 
 public class DonateActivity extends AppCompatActivity {
-    private EditText editTextName,editTextType,editTextAge,editTextColor,editTextBreed,editTextContact,editTextAddress;
+    private EditText editTextName, editTextType, editTextAge, editTextColor, editTextBreed, editTextContact, editTextAddress;
     private RadioGroup radioGroup;
-    private Button buttonUpload,buttonSubmit;
+    private Button buttonUpload, buttonSubmit;
     private ProgressBar progressBar;
-    public static final int PICK_IMAGE_REQUEST=22;
+    public static final int PICK_IMAGE_REQUEST = 22;
 
     private Uri filePath;
     private String imageUrl;
@@ -50,23 +50,23 @@ public class DonateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_donate);
 
         // get the Firebase  storage reference
         storageReference = FirebaseStorage.getInstance().getReference("AnimalImages");
 
-        radioGroup=findViewById(R.id.radio_group);
-        editTextName=findViewById(R.id.animal_name);
-        editTextAge=findViewById(R.id.animal_age);
-        editTextBreed=findViewById(R.id.animal_breed);
-        editTextColor=findViewById(R.id.animal_color);
-        editTextType=findViewById(R.id.animal_type);
-        editTextContact=findViewById(R.id.animal_contact);
-        editTextAddress=findViewById(R.id.animal_address);
-        progressBar=findViewById(R.id.progress_bar);
+        radioGroup = findViewById(R.id.radio_group);
+        editTextName = findViewById(R.id.animal_name);
+        editTextAge = findViewById(R.id.animal_age);
+        editTextBreed = findViewById(R.id.animal_breed);
+        editTextColor = findViewById(R.id.animal_color);
+        editTextType = findViewById(R.id.animal_type);
+        editTextContact = findViewById(R.id.animal_contact);
+        editTextAddress = findViewById(R.id.animal_address);
+        progressBar = findViewById(R.id.progress_bar);
 
-        buttonUpload=findViewById(R.id.animal_upload_buttton);
+        buttonUpload = findViewById(R.id.animal_upload_buttton);
         buttonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +74,7 @@ public class DonateActivity extends AppCompatActivity {
             }
         });
 
-        buttonSubmit=findViewById(R.id.animal_submit_buttton);
+        buttonSubmit = findViewById(R.id.animal_submit_buttton);
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,39 +159,37 @@ public class DonateActivity extends AppCompatActivity {
         }
     }
 
-    private void uploadAnimalInfo(){
+    private void uploadAnimalInfo() {
         progressBar.setVisibility(View.VISIBLE);
-        String name=editTextName.getText().toString().trim();
-        String age=editTextAge.getText().toString().trim();
-        String type=editTextType.getText().toString().trim();
-        String breed=editTextBreed.getText().toString().trim();
-        String color=editTextColor.getText().toString().trim();
-        String contactNumber=editTextContact.getText().toString().trim();
-        String address=editTextAddress.getText().toString().trim();
+        String name = editTextName.getText().toString().trim();
+        String age = editTextAge.getText().toString().trim();
+        String type = editTextType.getText().toString().trim().toLowerCase();
+        String breed = editTextBreed.getText().toString().trim();
+        String color = editTextColor.getText().toString().trim();
+        String contactNumber = editTextContact.getText().toString().trim();
+        String address = editTextAddress.getText().toString().trim();
         String gender;
 
-        int genderId=radioGroup.getCheckedRadioButtonId();
-        if(genderId==R.id.gender_male){
-            gender="male";
-        }
-        else{
-            gender="female";
+        int genderId = radioGroup.getCheckedRadioButtonId();
+        if (genderId == R.id.gender_male) {
+            gender = "male";
+        } else {
+            gender = "female";
         }
 
-        Animal animal=new Animal(name,age,color,breed,type,gender,imageUrl,contactNumber,address);
+        Animal animal = new Animal(name, age, color, breed, type, gender, imageUrl, contactNumber, address);
 
-        String animalId=System.currentTimeMillis()+"";
+        String animalId = System.currentTimeMillis() + "";
         FirebaseDatabase.getInstance().getReference("Animals")
                 .child(animalId)
                 .setValue(animal).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(DonateActivity.this, "Your animal has been recorded for adoption", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(DonateActivity.this,ProfileActivity.class));
-                }
-                else{
+                    startActivity(new Intent(DonateActivity.this, ProfileActivity.class));
+                } else {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(DonateActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                 }
@@ -199,7 +197,7 @@ public class DonateActivity extends AppCompatActivity {
         });
 
 
-        FirebaseDatabase.getInstance().getReference("User-Animal/"+FirebaseAuth.getInstance().getCurrentUser().getUid())
+        FirebaseDatabase.getInstance().getReference("User-Animal/" + FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child(animalId)
                 .setValue(animalId).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

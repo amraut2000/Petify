@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.petify.Adapters.AllPetsAdapter;
@@ -24,28 +27,38 @@ public class AllPetsActivity extends AppCompatActivity {
     private List<Animal> animals;
     private RecyclerView recyclerView;
     private AllPetsAdapter allPetsAdapter;
+    private ImageView imageViewSearch;
 
     private DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_all_pets);
 
         animals = new ArrayList<>();
+
+        imageViewSearch = findViewById(R.id.search_pet);
+        imageViewSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AllPetsActivity.this, SearchPetsActivity.class));
+            }
+        });
 
         recyclerView = findViewById(R.id.recyclerView_pets);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        databaseReference= FirebaseDatabase.getInstance().getReference("Animals");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Animals");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 animals.clear();
-                for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                    Animal animal=postSnapshot.getValue(Animal.class);
-                    Log.d("AllPetsActivity", "onDataChange: "+animal.getName());
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Animal animal = postSnapshot.getValue(Animal.class);
+                    Log.d("AllPetsActivity", "onDataChange: " + animal.getName());
                     animals.add(animal);
                 }
                 allPetsAdapter.notifyDataSetChanged();
